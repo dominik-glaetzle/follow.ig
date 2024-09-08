@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">upload files</h1>
+                    <form action="/" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="file1" class="form-label">upload follower file here:</label>
+                            <input class="form-control" type="file" id="file1" name="followerFile" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="file2" class="form-label">upload following file here:</label>
+                            <input class="form-control" type="file" id="file2" name="followingFile" required>
+                        </div>
+                        {% if followerUploaded and followingUploaded %}
+                        <div>
+                            <h6>followers: {{ num_follower }}</h6>
+                            <h6>following: {{ num_following}}</h6>
+                        </div>
+                        {% endif %}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">get bad followers</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if followerUploaded and followingUploaded %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">username</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        {% for notFollower in notFollowingBack %}
+                        <td>{{ notFollower }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+{% endif %}
+{% endblock %}
