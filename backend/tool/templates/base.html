@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+  </head>
+<body>
+  <nav class="navbar bg-body-tertiary" style="background-color: purple;">
+    <a class="navbar-brand d-flex align-items-center text-black" href="">
+      {% load static %}
+      <img src="../static/instagram-logo.svg" alt="Logo" width="40" height="40" class="d-inline-block me-2">
+      follow.ig
+    </a>
+  </nav>
+    <div>
+    {% block content %}
+    {% endblock %}
+    </div>
+</body>
+</html>
